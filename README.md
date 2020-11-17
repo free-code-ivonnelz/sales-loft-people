@@ -1,14 +1,16 @@
-# SlPeopleFrontend
+# SL People
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 ## Development server
+Run `npm install` to install modules
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Create an .env file in you root project with the following variables:
+`PORT=4600`
+`PEOPLE_URL=************.json`
+`API_KEY=***************`
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm run build` for a dev server. Navigate to `http://localhost:4600/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
