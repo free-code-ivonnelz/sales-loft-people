@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { PeopleService } from '../../../services/people.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -8,30 +8,51 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./people.component.scss']
 })
 export class PeopleComponent implements OnInit {
-  people:any = [];
+  people: any = [];
+  notDataFound: any;
   frequencyCount: any = {};
-  modalRef: BsModalRef;
-  
+  duplicatePeople: any = [];
+  modalRef: BsModalRef | null;
+  modalRef2: BsModalRef;
 
   constructor(private peopleService: PeopleService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.peopleService.getAllPeople().subscribe(data => {
-      this.people = data;
-      console.log('data', data);
-    })
+    this.peopleService.getAllPeople().subscribe(response => {
+      this.people = response;
+    },
+      error => {
+        this.notDataFound = error;
+      },
+    )
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+
+  openGetDuplicates(template: TemplateRef<any>) {
+    this.duplicatePeople = [];
+    let thethis = this;
+    this.people.map(function (item) {
+      // Match a string that starts with user email, similar to LIKE 'abc%'
+      const pattern = new RegExp(item.email_address.split('@')[0]);
+      const existItem = thethis.people.find(x =>
+        pattern.test(x.email_address) && item.email_address.split('@')[1] === x.email_address.split('@')[1] && item.email_address !== x.email_address);
+      if (existItem) {
+        thethis.duplicatePeople.push({ 'email1': existItem.email_address, 'email2': item.email_address });
+      }
+    });
+    this.modalRef2 = this.modalService.show(template);
+  }
+
+  openGetFrequency(template: TemplateRef<any>) {
     let count = {};
-    this.people.forEach(function(user) {
-      user['email'].split('').reduce((total, letter) => {
+    this.people.forEach(function (user) {
+      user['email_address'].split('').reduce((total, letter) => {
         total[letter] ? total[letter]++ : total[letter] = 1;
         count[letter] ? total[letter] + count[letter] : total[letter];
         return count;
       }, {});
-   });
-   this.frequencyCount = count;
-}
+    });
+    this.frequencyCount = count;
+    this.modalRef = this.modalService.show(template);
+  }
 
 }

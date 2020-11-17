@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const routes = require('./server/routes/routes');
+const dotenv = require('dotenv');
+dotenv.config();
 
 //routes
 app.use('/api', routes);
