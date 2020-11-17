@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { PeopleComponent } from './people.component';
+import { PeopleService } from '../../../services/people.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 describe('PeopleComponent', () => {
   let component: PeopleComponent;
@@ -8,7 +10,12 @@ describe('PeopleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PeopleComponent ]
+      declarations: [ PeopleComponent ],
+      providers: [PeopleService, HttpClient, HttpHandler],
+      imports: [
+        ModalModule.forRoot()
+      ],
+
     })
     .compileComponents();
   });

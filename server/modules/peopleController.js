@@ -1,7 +1,7 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
-const peopleApi = process.env.SALES_LOFT || 'https://api.salesloft.com/v2/people.json';
+const peopleApi = process.env.SALES_LOFT;
 const apiKey = process.env.API_KEY;
 
 const PeopleController = {
