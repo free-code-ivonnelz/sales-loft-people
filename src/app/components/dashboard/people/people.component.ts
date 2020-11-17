@@ -12,7 +12,7 @@ export class PeopleComponent implements OnInit {
   notDataFound: any;
   frequencyCount: any = {};
   duplicatePeople: any = [];
-  modalRef: BsModalRef | null;
+  modalRef: BsModalRef;
   modalRef2: BsModalRef;
 
   constructor(public peopleService: PeopleService, private modalService: BsModalService) { }
