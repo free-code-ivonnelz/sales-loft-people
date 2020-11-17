@@ -10,9 +10,6 @@ declare var $: any;
 })
 export class NavbarComponent {
 
-  ngOnInit(){
- }
-
 }
 
 

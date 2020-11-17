@@ -24,27 +24,27 @@ export class PeopleComponent implements OnInit {
       error => {
         this.notDataFound = error;
       },
-    )
+    );
   }
 
-  openGetDuplicates(template: TemplateRef<any>) {
+  openGetDuplicates(template: TemplateRef<any>): void {
     this.duplicatePeople = [];
-    let thethis = this;
-    this.people.map(function (item) {
+    const thethis = this;
+    this.people.map((item) => {
       // Match a string that starts with user email, similar to LIKE 'abc%'
       const pattern = new RegExp(item.email_address.split('@')[0]);
-      const existItem = thethis.people.find(x =>
-        pattern.test(x.email_address) && item.email_address.split('@')[1] === x.email_address.split('@')[1] && item.email_address !== x.email_address);
+      const existItem = thethis.people.find(x => pattern.test(x.email_address) &&
+      item.email_address.split('@')[1] === x.email_address.split('@')[1] && item.email_address !== x.email_address);
       if (existItem) {
-        thethis.duplicatePeople.push({ 'email1': existItem.email_address, 'email2': item.email_address });
+        thethis.duplicatePeople.push({ email1: existItem.email_address, email2: item.email_address });
       }
     });
     this.modalRef2 = this.modalService.show(template);
   }
 
-  openGetFrequency(template: TemplateRef<any>) {
-    let count = {};
-    this.people.forEach(function (user) {
+  openGetFrequency(template: TemplateRef<any>): void {
+    const count = {};
+    this.people.forEach((user) => {
       user['email_address'].split('').reduce((total, letter) => {
         total[letter] ? total[letter]++ : total[letter] = 1;
         count[letter] ? total[letter] + count[letter] : total[letter];

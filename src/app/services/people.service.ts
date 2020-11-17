@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
 @Injectable()
 export class PeopleService {
 
   constructor(private http: HttpClient) { }
 
-  getAllPeople() {
+  getAllPeople(): Observable<any> {
     return this.http.get('/api').pipe(catchError(this.handleError));
   }
 
@@ -24,7 +24,6 @@ export class PeopleService {
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
-  };
-  
+  }
 
 }

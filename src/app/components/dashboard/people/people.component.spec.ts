@@ -37,8 +37,8 @@ describe('PeopleComponent', () => {
     });
 
     it('should be fine',  () => {
-      const people = [1,2,3];
-      spyOn(component.peopleService,'getAllPeople').and.returnValue(of(people));
+      const people = [1, 2, 3];
+      spyOn(component.peopleService, 'getAllPeople').and.returnValue(of(people));
       component.ngOnInit();
       expect(component.people).toEqual(people);
     });

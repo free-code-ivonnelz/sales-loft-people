@@ -4,14 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
-//Components
+// Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { ErrorComponent } from './components/common/error/error.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PeopleComponent } from './components/dashboard/people/people.component';
 
-//Services
+// Services
 import { PeopleService} from './services/people.service';
 
 
