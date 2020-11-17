@@ -15,7 +15,7 @@ export class PeopleComponent implements OnInit {
   modalRef: BsModalRef | null;
   modalRef2: BsModalRef;
 
-  constructor(private peopleService: PeopleService, private modalService: BsModalService) { }
+  constructor(public peopleService: PeopleService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.peopleService.getAllPeople().subscribe(response => {
