@@ -1,0 +1,42 @@
+$primary_color:#00052c;
+$teal_color:#41d6c3;
+
+html {
+    scroll-behavior: smooth;
+    -webkit-transition: width 2s; /* Safari */
+    transition: width 2s;
+  }
+  
+
+.nav_color{
+    background-color: $primary_color;
+}
+
+h2{
+    color:white;
+}
+
+.nav-item{
+    cursor: pointer !important;
+    .dropdown-item:hover{
+        background-color: #dfe3e6 !important;
+    }
+}
+
+.language_button{
+    background-color: $teal_color;
+    color:white !important;
+}
+
+.user-profile {
+    text-align: right;
+    min-width: 230px;
+    margin-top: 10px;
+  }
+  
+.al-user-profile {
+float: right;
+margin-right: 12px;
+transition: all .15s ease-in-out;
+padding: 0;
+}
