@@ -3,10 +3,7 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { PeopleComponent } from './people.component';
 import { PeopleService } from '../../../services/people.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { throwError, of } from 'rxjs';
-import { TemplateRef, ElementRef } from '@angular/core';
-import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
-
+import { of } from 'rxjs';
 describe('PeopleComponent', () => {
   let component: PeopleComponent;
   let fixture: ComponentFixture<PeopleComponent>;
@@ -36,7 +33,7 @@ describe('PeopleComponent', () => {
   describe('get All People', () => {
 
     it('should return an error', () => {
-      spyOn(component.peopleService, 'getAllPeople').and.returnValue(throwError('Something bad happened; please try again later.'));
+      spyOn(component.peopleService, 'getAllPeople').and.returnValue(of('Something bad happened; please try again later.'));
       component.ngOnInit();
       expect(component.notDataFound).toEqual('Something bad happened; please try again later.');
     });
@@ -48,28 +45,25 @@ describe('PeopleComponent', () => {
       expect(component.people).toEqual(people);
     });
 
-  });
-
-  describe('get Frequency count', () => {
-
-    it('should open a modal', fakeAsync(() => {
+    it('should enter openGetFrequency', () => {
       const frequencyCount = {};
-      spyOn(component, 'openGetFrequency').and.callThrough();
+      const spy = spyOn(component, 'openGetFrequency').and.returnValue();
       component.openGetFrequency();
       expect(component.frequencyCount).toEqual(frequencyCount);
-    }));
+      expect(spy).toHaveBeenCalled();
+    });
 
-  });
-
-  describe('get Duplicates', () => {
-
-    it('should open a modal', fakeAsync(() => {
+    it('should enter openGetDuplicates',() => {
       const duplicatePeople = [];
-      spyOn(component, 'openGetDuplicates').and.callThrough();
+      const spy = spyOn(component, 'openGetDuplicates').and.returnValue();
       component.openGetDuplicates();
       expect(component.duplicatePeople).toEqual(duplicatePeople);
-    }));
+      expect(spy).toHaveBeenCalled();
+    });
+
 
   });
+
+ 
 
 });
