@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { PeopleService } from '../../../services/people.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-people',
@@ -12,8 +12,8 @@ export class PeopleComponent implements OnInit {
   notDataFound: any;
   frequencyCount: any = {};
   duplicatePeople: any = [];
-  modalRef: BsModalRef;
-  modalRef2: BsModalRef;
+  @ViewChild('modal') modal: ModalDirective;
+  @ViewChild('modal2') modal2: ModalDirective;
 
   constructor(public peopleService: PeopleService, private modalService: BsModalService) { }
 
@@ -27,7 +27,7 @@ export class PeopleComponent implements OnInit {
     );
   }
 
-  openGetDuplicates(template: TemplateRef<any>): void {
+  openGetDuplicates(): void {
     this.duplicatePeople = [];
     const thethis = this;
     this.people.map((item) => {
@@ -39,10 +39,10 @@ export class PeopleComponent implements OnInit {
         thethis.duplicatePeople.push({ email1: existItem.email_address, email2: item.email_address });
       }
     });
-    this.modalRef2 = this.modalService.show(template);
+    this.modal2.show();
   }
 
-  openGetFrequency(template: TemplateRef<any>): void {
+  openGetFrequency(): void {
     const count = {};
     this.people.forEach((user) => {
       user['email_address'].split('').reduce((total, letter) => {
@@ -52,7 +52,7 @@ export class PeopleComponent implements OnInit {
       }, {});
     });
     this.frequencyCount = count;
-    this.modalRef = this.modalService.show(template);
+    this.modal.show();
   }
 
 }

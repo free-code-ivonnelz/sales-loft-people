@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
@@ -22,6 +21,7 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
   it('should render title', () => {
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('h2').textContent).toContain('Sales Loft');

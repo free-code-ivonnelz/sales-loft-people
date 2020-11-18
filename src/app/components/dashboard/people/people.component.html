@@ -38,12 +38,12 @@
             </table>
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <button type="button" class="btn btn-primary" (click)="openGetFrequency(template)">
+                    <button type="button" class="btn btn-primary" (click)="openGetFrequency(modal)">
                         Get frequency
                     </button>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
-                    <button type="button" class="btn btn-primary" (click)="openGetDuplicates(template2)">
+                    <button type="button" class="btn btn-primary" (click)="openGetDuplicates(modal2)">
                         Similar emails
                     </button>
                 </div>
@@ -53,67 +53,71 @@
 </div>
 
 <!-- Modal Frequency count list-->
-<ng-template #template>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">Fracuency of characters</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-            </button>
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Fracuency of characters</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollTable">
+                <table class="table table-striped scrollTable">
+                    <thead>
+                        <tr>
+                            <th>Character</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of frequencyCount | keyvalue">
+                            <td>
+                                {{ item.key }}
+                            </td>
+                            <td>
+                                {{ item.value }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer"></div>
         </div>
-        <div class="modal-body scrollTable">
-            <table class="table table-striped scrollTable">
-                <thead>
-                    <tr>
-                        <th>Character</th>
-                        <th>Count</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of frequencyCount | keyvalue">
-                        <td>
-                            {{ item.key }}
-                        </td>
-                        <td>
-                            {{ item.value }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="modal-footer"></div>
     </div>
-</ng-template>
+</div>
 
 <!-- Modal Duplicate Records list-->
-<ng-template #template2>
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title pull-left">Possible duplicate</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2.hide()">
-                <span aria-hidden="true">&times;</span>
-            </button>
+<div bsModal #modal2="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Possible duplicates</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modal2.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body scrollTable">
+                <table class="table table-striped scrollTable">
+                    <thead>
+                        <tr>
+                            <th>Email 1</th>
+                            <th>Email 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of duplicatePeople">
+                            <td>
+                                {{ item.email1 }}
+                            </td>
+                            <td>
+                                {{ item.email2 }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer"></div>
         </div>
-        <div class="modal-body scrollTable">
-            <table class="table table-striped scrollTable">
-                <thead>
-                    <tr>
-                        <th>Email 1</th>
-                        <th>Email 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of duplicatePeople">
-                        <td>
-                            {{ item.email1 }}
-                        </td>
-                        <td>
-                            {{ item.email2 }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="modal-footer"></div>
     </div>
-</ng-template>
+</div>
