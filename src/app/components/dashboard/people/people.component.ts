@@ -43,15 +43,15 @@ export class PeopleComponent implements OnInit {
   }
 
   openGetFrequency(): void {
-    const count = {};
+    this.frequencyCount = {};
+    const thethis = this;
     this.people.forEach((user) => {
       user['email_address'].split('').reduce((total, letter) => {
         total[letter] ? total[letter]++ : total[letter] = 1;
-        count[letter] ? total[letter] + count[letter] : total[letter];
-        return count;
+        thethis.frequencyCount[letter] ? total[letter] + thethis.frequencyCount[letter] : total[letter];
+        return thethis.frequencyCount;
       }, {});
     });
-    this.frequencyCount = count;
     this.modal.show();
   }
 

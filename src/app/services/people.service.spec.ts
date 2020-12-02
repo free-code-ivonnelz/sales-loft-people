@@ -28,12 +28,11 @@ describe('PeopleService', () => {
     });
   }));
 
-  it('should return an Error',  inject([PeopleService], (service: PeopleService, done: DoneFn) => {
-    const dummyError: any = HttpErrorResponse;
-    service.handleError(dummyError).subscribe(users => {
+  it('should return an Error', inject([PeopleService], async (service: PeopleService, done: DoneFn ) => {
+    const mockedResult: any  = 'Something bad happened; please try again later.';
+    service.handleError(mockedResult).subscribe(users => {
       expect(users).toEqual({ error: 'Something bad happened; please try again later.' });
       done();
-    });
-  }));
+    });  }));
 
 });

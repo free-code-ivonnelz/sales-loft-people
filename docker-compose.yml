@@ -1,0 +1,37 @@
+version: '3'
+services:
+    frontend-builder:
+        build:
+            context: .
+            dockerfile: Dockerfile-dev
+        volumes: 
+            - ./:/app
+            - /app/node_modules
+        ports:
+            - 3000:3000
+        command: npm run start:bash
+        env_file:
+            - ./.env
+        depends_on: 
+            - frontend-server
+        networks: 
+            - front-network
+        tty: true
+    frontend-server:
+        build:
+            context: .
+            dockerfile: Dockerfile-dev
+        volumes: 
+            - .:/app
+            - /app/node_modules
+        ports:
+            - 4600:4600
+        command:  npm run start
+        env_file:
+            - ./.env
+        networks: 
+            - front-network
+            
+networks:
+    front-network:
+        driver: bridge

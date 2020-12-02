@@ -7,6 +7,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 // Components
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { FooterComponent } from './components/common/footer/footer.component';
 import { ErrorComponent } from './components/common/error/error.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PeopleComponent } from './components/dashboard/people/people.component';
@@ -19,6 +20,7 @@ import { PeopleService} from './services/people.service';
   declarations: [
     AppComponent,
     NavbarComponent,
+    FooterComponent,
     ErrorComponent,
     DashboardComponent,
     PeopleComponent
